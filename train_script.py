@@ -34,43 +34,42 @@ deepinsight_dataset_names = [
     'deepinsight_n2_phate'
 ]
 
-# # Train LR models and feedfoward networks on non-image datasets
-# for dataset, dataset_name in zip(datasets, dataset_names):
+# Train LR models and feedfoward networks on non-image datasets
+for dataset, dataset_name in zip(datasets, dataset_names):
 
-#     # Split dataset into training and test data
-#     train_dataset_len = round(len(dataset) * 0.8)
-#     test_dataset_len = len(dataset) - train_dataset_len
+    # Split dataset into training and test data
+    train_dataset_len = round(len(dataset) * 0.8)
+    test_dataset_len = len(dataset) - train_dataset_len
     
-#     train_dataset, test_dataset = torch.utils.data.random_split(dataset, (train_dataset_len, test_dataset_len))
+    train_dataset, test_dataset = torch.utils.data.random_split(dataset, (train_dataset_len, test_dataset_len))
 
-#     # Initialize loaders
-#     train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=128, shuffle=True)
-#     test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=128, shuffle=True)
+    # Initialize loaders
+    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=128, shuffle=True)
+    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=128, shuffle=True)
 
-#     models = [
-#         LogisticRegression(),
-#         FeedForwardNetwork()
-#     ]
+    models = [
+        LogisticRegression(),
+        FeedForwardNetwork()
+    ]
 
-#     model_names = [
-#         'LR',
-#         'FFN'
-#     ]
+    model_names = [
+        'LR',
+        'FFN'
+    ]
 
-#     for model, model_name in zip(models, model_names):
-#         optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
-#         loss_fn = torch.nn.CrossEntropyLoss()
+    for model, model_name in zip(models, model_names):
+        optimizer = torch.optim.Adam(model.parameters(), lr=0.0001)
+        loss_fn = torch.nn.CrossEntropyLoss()
 
-#         model.to(device)
-#         train(model, loss_fn, optimizer, train_loader, test_loader, epochs=300)
+        model.to(device)
+        train(model, loss_fn, optimizer, train_loader, test_loader, epochs=300)
 
-#         # Print training and test set accuracies
-#         evaluate(model, train_loader)
-#         evaluate(model, test_loader)
+        # Print training and test set accuracies
+        evaluate(model, train_loader)
+        evaluate(model, test_loader)
 
-#         # Save model
-#         torch.save(model.state_dict(), model_name + '_' + dataset_name)
-
+        # Save model
+        torch.save(model.state_dict(), model_name + '_' + dataset_name)
 
 # Train CNNs on image datasets created using DeepInsight
 for dataset, dataset_name in zip(deepinsight_datasets, deepinsight_dataset_names):

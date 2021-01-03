@@ -3,7 +3,10 @@ import torch.nn.functional as F
 from torch import nn
 
 
-# A simple logistic regression model
+"""
+A simple Logistic Regression model
+"""
+
 class LogisticRegression(nn.Module):
     def __init__(self, activation=nn.Sigmoid()):
         super().__init__()
@@ -14,7 +17,10 @@ class LogisticRegression(nn.Module):
         predictions = self.layer_1(x)
         return predictions
 
-# A feedforward network with one hidden layer
+"""
+A Feedforward Network with one hidden layer
+"""
+
 class FeedForwardNetwork(nn.Module):
     def __init__(self, activation=nn.Sigmoid()):
         super().__init__()
@@ -27,7 +33,10 @@ class FeedForwardNetwork(nn.Module):
         predictions = self.layer_2(output_1)
         return predictions
 
-# A CNN for 6 x 6 x 3 images
+"""
+A CNN for 6 x 6 x 3 images
+"""
+
 class MatchNeuralNet(nn.Module):
     def __init__(self):
         super().__init__()

@@ -29,7 +29,10 @@ def remove_outliers(df, c, blue_win=True):
 
   return df
 
-# Custom dataset to load RAW match data from csv file
+"""
+Custom dataset to load RAW match data from csv file
+"""
+
 class MatchDataSet(Dataset):
   def __init__(self, f):
     csv_raw = pd.read_csv(f)
@@ -45,7 +48,10 @@ class MatchDataSet(Dataset):
   def __getitem__(self, idx):
     return self.X_train[idx], self.y_train[idx]
 
-# A custom dataset normalized using norm-1 with outliers removed.
+"""
+A custom dataset normalized using norm-1 with outliers removed.
+"""
+
 class MatchDataSetCleanedN1(Dataset):
   def __init__(self, f):
     csv_raw = pd.read_csv(f)
@@ -73,8 +79,10 @@ class MatchDataSetCleanedN1(Dataset):
   def __getitem__(self, idx):
     return self.X_train[idx], self.y_train[idx]
 
+"""
+A custom dataset normalized using norm-2 with outliers removed.
+"""
 
-# A custom dataset normalized using norm-2 with outliers removed.
 class MatchDataSetCleanedN2(Dataset):
   def __init__(self, f):
     csv_raw = pd.read_csv(f)
@@ -103,8 +111,10 @@ class MatchDataSetCleanedN2(Dataset):
   def __getitem__(self, idx):
     return self.X_train[idx], self.y_train[idx]
 
+"""
+Custom data set that uses DeepInsight to convert non-image data normalized with norm-1 to image data
+"""
 
-# Custom data set that uses DeepInsight to convert non-image data normalized with norm-1 to image data
 class MatchDataImageSetCleanedN1(Dataset):
   def __init__(self, f, p=6, fe='tsne'):
     csv_raw = pd.read_csv(f)
@@ -159,8 +169,10 @@ class MatchDataImageSetCleanedN1(Dataset):
   def __getitem__(self, idx):
     return self.transform(self.X_train[idx]).double(), self.y_train[idx]
 
-  
-# Custom data set that uses DeepInsight to convert non-image data normalized with norm-2 to image data
+"""
+Custom data set that uses DeepInsight to convert non-image data normalized with norm-2 to image data
+"""
+
 class MatchDataImageSetCleanedN2(Dataset):
   def __init__(self, f, p=6, fe='tsne'):
     csv_raw = pd.read_csv(f)
